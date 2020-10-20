@@ -1,0 +1,32 @@
+<div class="logo-profile">
+  <h4>
+    {{ usuario.ur_nombre | titlecase }} {{ usuario.ur_apellido | titlecase }}
+  </h4>
+  <p class="mb-0">{{ usuario.ur_rol | titlecase }}</p>
+  <img src="assets/images/user_default.png" alt="" />
+</div>
+<mat-divider></mat-divider>
+<div class="scroll-sidebar">
+  <ul class="menu">
+    <li class="item-menu" *ngFor="let opcion of menu">
+      <a
+        routerLinkActive="active"
+        [routerLink]="[opcion.url]"
+        data-toggle="collapse"
+        [attr.data-target]="'#' + opcion.titulo"
+        aria-expanded="false"
+        class="has-arrow"
+      >
+        <mat-icon>{{ opcion.icono }}</mat-icon>
+        {{ opcion.titulo }}
+      </a>
+      <!-- <ul class="collapse submenu" [id]="opcion.titulo">
+        <li *ngFor="let subopcion of opcion.submenu">
+          <a routerLinkActive="active" [routerLink]="[subopcion.url]">{{
+            subopcion.titulo
+          }}</a>
+        </li>
+      </ul> -->
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,58 @@
+<section class="fondo-login">
+  <div class="card login-box">
+    <div class="card-body">
+      <form [formGroup]="loginForm" (ngSubmit)="ingresar(loginForm.value)">
+        <h1 class="text-center">eSign</h1>
+        <h3 class="text-center primary-angular">Web System</h3>
+
+        <mat-divider></mat-divider>
+        <br />
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input
+            formControlName="email"
+            matInput
+            autocomplete="off"
+            type="text"
+          />
+          <span
+            class="text-danger"
+            *ngIf="
+              loginForm.get('email').hasError('required') &&
+              loginForm.get('email').touched
+            "
+            >Email is required</span
+          >
+          <span
+            class="text-danger"
+            *ngIf="
+              loginForm.get('email').hasError('email') &&
+              loginForm.get('email').touched
+            "
+            >Email is invalid</span
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input
+            formControlName="password"
+            matInput
+            autocomplete="off"
+            type="password"
+          />
+        </mat-form-field>
+
+        <button
+          [disabled]="loginForm.invalid"
+          class="w-100"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

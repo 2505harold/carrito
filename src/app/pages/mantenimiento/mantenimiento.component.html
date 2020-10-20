@@ -1,0 +1,222 @@
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h3 class="font-weight-lighter">Tabla MODELOS</h3>
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="openDialog('Modelo', 'Agregar', {})"
+      >
+        <mat-icon>add</mat-icon> Agregar
+      </button>
+    </div>
+    <hr />
+    <div class="card-body overflow pt-0" [style.height.px]="300">
+      <table mat-table [dataSource]="dataModelos" matSort>
+        <!-- Item Column -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ITEM</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="idmodelo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idmodelo }}
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="md_modelo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>MODELO</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.md_modelo }}
+          </td>
+        </ng-container>
+        <!-- Column -->
+        <ng-container matColumnDef="ct_categoria">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORIA</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.ct_categoria }}
+          </td>
+        </ng-container>
+        <!--Acciones-->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-stroked-button
+              (click)="openDialog('Modelo', 'Actualizar', element)"
+              color="primary"
+            >
+              Actualizar
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="noData">
+          <td mat-footer-cell *matFooterCellDef colspan="5" class="text-center">
+            No hay datos encontrados
+          </td>
+        </ng-container>
+        <tr
+          mat-footer-row
+          *matFooterRowDef="['noData']"
+          [ngClass]="{
+            hide: !(dataModelos != null && dataModelos.data.length == 0)
+          }"
+        ></tr>
+
+        <tr mat-header-row *matHeaderRowDef="colsModelo; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: colsModelo"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+<br />
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h3 class="font-weight-lighter">Tabla CATEGORIAS</h3>
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="openDialog('Categorias', 'Agregar', {})"
+      >
+        <mat-icon>add</mat-icon> Agregar
+      </button>
+    </div>
+    <hr />
+    <div class="card-body overflow pt-0" [style.height.px]="300">
+      <table mat-table [dataSource]="dataCategoria" matSort>
+        <!-- Item Column -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ITEM</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="idcategoria">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idcategoria }}
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="ct_categoria">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORIA</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.ct_categoria }}
+          </td>
+        </ng-container>
+
+        <!--Acciones-->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-stroked-button
+              (click)="openDialog('Categorias', 'Actualizar', element)"
+              color="primary"
+            >
+              Actualizar
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="noData">
+          <td mat-footer-cell *matFooterCellDef colspan="4" class="text-center">
+            No hay datos encontrados
+          </td>
+        </ng-container>
+        <tr
+          mat-footer-row
+          *matFooterRowDef="['noData']"
+          [ngClass]="{
+            hide: !(dataCategoria != null && dataCategoria.data.length == 0)
+          }"
+        ></tr>
+
+        <tr mat-header-row *matHeaderRowDef="colsCateg; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: colsCateg"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<br />
+<div class="card shadow-sm">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <h3 class="font-weight-lighter">Tabla MARCA</h3>
+      <button
+        mat-stroked-button
+        color="primary"
+        (click)="openDialog('Marca', 'Agregar', {})"
+      >
+        <mat-icon>add</mat-icon> Agregar
+      </button>
+    </div>
+    <div class="card-body overflow pt-0" [style.height.px]="300">
+      <table mat-table [dataSource]="dataMarca" matSort>
+        <!-- Item Column -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ITEM</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="idmarca">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.idmarca }}
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="mc_marca">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>MARCA</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.mc_marca }}
+          </td>
+        </ng-container>
+
+        <!--Acciones-->
+        <ng-container matColumnDef="acciones">
+          <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-stroked-button
+              (click)="openDialog('Marca', 'Actualizar', element)"
+              color="primary"
+            >
+              Actualizar
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="noData">
+          <td mat-footer-cell *matFooterCellDef colspan="4" class="text-center">
+            No hay datos encontrados
+          </td>
+        </ng-container>
+        <tr
+          mat-footer-row
+          *matFooterRowDef="['noData']"
+          [ngClass]="{
+            hide: !(dataMarca != null && dataMarca.data.length == 0)
+          }"
+        ></tr>
+
+        <tr mat-header-row *matHeaderRowDef="colsMarca; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: colsMarca"></tr>
+      </table>
+    </div>
+  </div>
+</div>

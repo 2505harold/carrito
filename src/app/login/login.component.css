@@ -1,0 +1,31 @@
+.fondo-login {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-image: url("/assets/images/fondo.jpg");
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.login-box {
+  width: 400px;
+  margin: 0 auto;
+  border-radius: 0;
+}
+
+.fondo-login .login-box {
+  position: absolute;
+  right: 0px;
+  height: 100%;
+}
+
+@media (max-width: 412px) {
+  .login-box {
+    width: 100%;
+  }
+}

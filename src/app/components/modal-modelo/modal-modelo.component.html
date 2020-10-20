@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>
+  <strong>{{ action }} {{ modal }}</strong>
+</h1>
+<mat-dialog-content class="d-flex flex-column">
+  <mat-form-field appearance="outline">
+    <mat-label>{{ modal }}</mat-label>
+    <input
+      matInput
+      placeholder="ingrese valor"
+      [(ngModel)]="localData.valor"
+      autocomplete="off"
+      class="w-100"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline" *ngIf="showModalCategoria">
+    <mat-label>Categoria</mat-label>
+    <mat-select
+      [(value)]="localData.idcategoria"
+      [(ngModel)]="localData.idcategoria"
+    >
+      <mat-option
+        [value]="option.idcategoria"
+        *ngFor="let option of optCateg"
+        >{{ option.ct_categoria }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" *ngIf="showModalModelo">
+    <mat-label>Modelo</mat-label>
+    <mat-select [(ngModel)]="localData.idmodelo">
+      <mat-option
+        value="{{ option.idmodelo }}"
+        *ngFor="let option of optCateg"
+        >{{ option.ct_categoria }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" *ngIf="showModalMarca">
+    <mat-label>Marca</mat-label>
+    <mat-select [(ngModel)]="localData.idmarca">
+      <mat-option
+        value="{{ option.idmarca }}"
+        *ngFor="let option of optCateg"
+        >{{ option.ct_categoria }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="doAction()">{{ action }}</button>
+  <button mat-button mat-flat-button color="warn" (click)="closeDialog()">
+    Cancel
+  </button>
+</mat-dialog-actions>
