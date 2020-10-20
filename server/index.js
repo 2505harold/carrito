@@ -30,7 +30,7 @@ app.use("/login", require("./routes/login"));
 // Public
 
 //configuracion al subir a heroku
-if (process.env.NODE_ENV === "PRODUCTION") {
+if (process.env.NODE_ENV === "PROD") {
   app.use(express.static(path.join(__dirname, "../dist")));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "../dist/index.html"));
