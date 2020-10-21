@@ -14,6 +14,7 @@ import { PAGES_ROUTES } from './pages.routes';
 import { SharedModule } from '../shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { MantenimientoComponent } from './mantenimiento/mantenimiento.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,13 @@ import { MantenimientoComponent } from './mantenimiento/mantenimiento.component'
     EmpleadosComponent,
     MantenimientoComponent,
   ],
-  imports: [CommonModule, PAGES_ROUTES, SharedModule, MaterialModule],
+  imports: [
+    CommonModule,
+    PAGES_ROUTES,
+    SharedModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class PagesModule {}

@@ -18,6 +18,23 @@ app.get("/", async (req, res) => {
 });
 
 // ====================================
+// obtener lista por ID categoriria
+// ====================================
+app.get("/porIdCateg/:id", async (req, res) => {
+  const id = req.params.id;
+  pool.query(
+    "SELECT * FROM tb_modelo t1 inner join tb_categoria t2 on t1.idcategoria = t2.idcategoria where t1.idcategoria = ? order by t1.idmodelo desc",
+    [id],
+    (err, results) => {
+      if (err) res.status(500).json({ ok: false, message: err });
+      else {
+        res.status(200).json({ ok: true, datos: results });
+      }
+    }
+  );
+});
+
+// ====================================
 // agregar
 // ====================================
 app.post("/", async (req, res) => {

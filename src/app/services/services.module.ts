@@ -6,6 +6,7 @@ import { LoginGuard } from './guards/login.guard';
 import { ModeloService } from './modelo.service';
 import { MarcaService } from './marca.service';
 import { MessagesService } from './messages.service';
+import { ProductoService } from './producto.service';
 
 @NgModule({
   declarations: [],
@@ -16,6 +17,7 @@ import { MessagesService } from './messages.service';
     ModeloService,
     MessagesService,
     MarcaService,
+    ProductoService,
   ],
 })
 export class ServicesModule {}

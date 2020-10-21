@@ -3,46 +3,52 @@ const app = express();
 const pool = require("../connections/mysql");
 
 // ====================================
-// get pedido
+// obtener modelos
 // ====================================
-app.get("/lista", (req, res) => {
-  res.json({ ok: true });
+app.get("/", async (req, res) => {
+  pool.query(
+    "SELECT * FROM tb_producto t1 inner join tb_categoria t2 on t1.idcategoria = t2.idcategoria inner join tb_marca t3 on t1.idmarca = t3.idmarca inner join tb_modelo t4 on t1.idmodelo = t4.idmodelo order by t1.idproducto desc",
+    (err, results) => {
+      if (err) res.status(500).json({ ok: false, message: err });
+      else {
+        res.status(200).json({ ok: true, datos: results });
+      }
+    }
+  );
 });
 
 // ====================================
-// get pedido
+// crear
 // ====================================
-app.post("/agregar", async (req, res) => {
+app.post("/", async (req, res) => {
   const {
-    idproducto,
     idmodelo,
     idmarca,
     idcategoria,
-    idpedido,
-    idusuario,
     prod_codigo,
     prod_nombre,
     prod_precio,
-    prod_image,
     prod_cantidad,
   } = req.body;
 
   const newProducto = {
-    idproducto,
     idmodelo,
     idmarca,
     idcategoria,
-    idpedido,
-    idusuario,
     prod_codigo,
     prod_nombre,
     prod_precio,
-    prod_image,
     prod_cantidad,
   };
 
-  await pool.query("INSERT INTO tb_producto set ?", [newProducto]);
-  res.json({ ok: true, message: "Datos insertados correctamente" });
+  pool.query("INSERT INTO tb_producto set ?", [newProducto], (err, results) => {
+    if (err) res.status(500).json({ ok: false, message: err });
+    else {
+      res
+        .status(200)
+        .json({ ok: true, message: "Datos insertados correctamente" });
+    }
+  });
 });
 
 module.exports = app;
