@@ -22,6 +22,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatSortModule } from '@angular/material/sort';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [],
@@ -48,6 +49,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatTabsModule,
     MatSortModule,
     MatExpansionModule,
+    MaterialFileInputModule,
   ],
 })
 export class MaterialModule {}

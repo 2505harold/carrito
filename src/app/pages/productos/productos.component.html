@@ -1,106 +1,73 @@
 <div class="card shadow-sm">
   <div class="card-body" *ngIf="!showForm">
-    <div class="d-flex justify-content-between">
-      <h3 class="font-weight-lighter">Mis Productos</h3>
+    <div class="d-flex justify-content-between align-items-start">
+      <div class="titulo">
+        <h3 class="font-weight-lighter">Mis Productos</h3>
+        <p>Numero de registros : {{ listaProductos.length }}</p>
+      </div>
       <button mat-raised-button color="accent" (click)="verForm('Agregar')">
         Agregar
       </button>
     </div>
     <hr />
-    <div class="card-body overflow pt-0" [style.height.px]="300">
-      <table mat-table [dataSource]="datosTabla" matSort>
-        <!-- Item Column -->
-        <ng-container matColumnDef="index">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>ITEM</th>
-          <td mat-cell *matCellDef="let element; let i = index">
-            {{ i + 1 }}
-          </td>
-        </ng-container>
 
-        <!-- Column -->
-        <ng-container matColumnDef="prod_codigo">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>CODIGO</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.prod_codigo }}
-          </td>
-        </ng-container>
-
-        <!-- Column -->
-        <ng-container matColumnDef="prod_nombre">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>NOMBRE</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.ct_categoria }}
-          </td>
-        </ng-container>
-
-        <!-- Column -->
-        <ng-container matColumnDef="mc_marca">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>MARCA</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.mc_marca }}
-          </td>
-        </ng-container>
-
-        <!-- Column -->
-        <ng-container matColumnDef="ct_categoria">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>CATEGORIA</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.ct_categoria }}
-          </td>
-        </ng-container>
-
-        <!-- Column -->
-        <ng-container matColumnDef="md_modelo">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>MODELO</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.ct_categoria }}
-          </td>
-        </ng-container>
-
-        <!-- Column -->
-        <ng-container matColumnDef="prod_precio">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>PRECIO</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.prod_precio }}
-          </td>
-        </ng-container>
-
-        <!-- Column -->
-        <ng-container matColumnDef="prod_cantidad">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>CANTIDAD</th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.prod_cantidad }}
-          </td>
-        </ng-container>
-
-        <!--Acciones-->
-        <ng-container matColumnDef="acciones">
-          <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-stroked-button color="primary">Ver pedidos</button>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="noData">
-          <td mat-footer-cell *matFooterCellDef colspan="4" class="text-center">
-            No hay datos encontrados
-          </td>
-        </ng-container>
-        <tr
-          mat-footer-row
-          *matFooterRowDef="['noData']"
-          [ngClass]="{
-            hide: !(datosTabla != null && datosTabla.data.length == 0)
-          }"
-        ></tr>
-
-        <tr mat-header-row *matHeaderRowDef="cols; sticky: true"></tr>
-        <tr mat-row *matRowDef="let row; columns: cols"></tr>
-      </table>
+    <div class="row">
+      <div class="col-sm-12 col-lg-6" *ngFor="let producto of listaProductos">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <img
+                [src]="producto.prod_image | imagen: 'productos'"
+                alt="Imagen"
+                class="w-100"
+              />
+            </div>
+            <div class="col-12 col-sm-6">
+              <h3>{{ producto.prod_nombre }}</h3>
+              <p>Codigo : {{ producto.prod_codigo }}</p>
+              <p>Cantidad : {{ producto.prod_cantidad }}</p>
+              <p>Marca : {{ producto.mc_marca }}</p>
+              <p>Modelo : {{ producto.md_modelo }}</p>
+              <br />
+              <p class="mb-0">Precio</p>
+              <h1>S/. {{ producto.prod_precio }}</h1>
+              <button mat-button color="primary">Pedidos</button>
+              <button
+                mat-button
+                color="accent"
+                (click)="verForm('Actualizar', producto)"
+              >
+                Actualizar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <!---------------------------------------------->
+  <!-- Formulario creacion y actualizacion producto -->
+  <!---------------------------------------------->
   <div class="card-body" *ngIf="showForm">
-    <h3 class="font-weight-lighter">{{ actionForm }}</h3>
-    <h2 class="warn-angular font-weight-lighter">Producto</h2>
+    <div class="d-flex justify-content-between align-items-start">
+      <div class="titulo">
+        <h3 class="font-weight-lighter">{{ actionForm }}</h3>
+        <h2 class="warn-angular font-weight-lighter">Producto</h2>
+      </div>
+      <button mat-fab color="warn" (click)="ocultarForm()">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+      </button>
+    </div>
+
+    <div class="alert alert-info" role="alert">
+      <div class="d-flex justify-content-between">
+        <p class="mb-0">Datos Genericos</p>
+        <button mat-button color="warn" (click)="guardar()">
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
 
     <div class="row">
       <div class="col-sm-6">
@@ -146,7 +113,7 @@
           <mat-label>Marca</mat-label>
           <mat-select [(ngModel)]="datosProducto.idmarca">
             <mat-option
-              value="{{ option.idmarca }}"
+              [value]="option.idmarca"
               *ngFor="let option of optMarca"
               >{{ option.mc_marca }}</mat-option
             >
@@ -170,7 +137,7 @@
           <mat-label>Modelo</mat-label>
           <mat-select [(ngModel)]="datosProducto.idmodelo">
             <mat-option
-              value="{{ option.idmodelo }}"
+              [value]="option.idmodelo"
               *ngFor="let option of optModelo"
               >{{ option.md_modelo }}</mat-option
             >
@@ -178,12 +145,44 @@
         </mat-form-field>
       </div>
     </div>
+
+    <!--Seccion de la imagen -->
+
+    <div [ngClass]="{ hide: actionForm == 'Agregar' }">
+      <div class="alert alert-info" role="alert">
+        <div class="d-flex justify-content-between">
+          <p class="mb-0">Actualizar imagen</p>
+          <button mat-button color="warn" (click)="guardarImagen()">
+            Actualizar
+          </button>
+        </div>
+      </div>
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Seleccione archivo</mat-label>
+        <ngx-mat-file-input
+          (change)="seleccionImagen($event.target.files[0])"
+          placeholder="Seleccione archivo"
+        ></ngx-mat-file-input>
+        <mat-icon matSuffix>folder</mat-icon>
+      </mat-form-field>
+      <p class="text-center">Imagen previa</p>
+      <img
+        *ngIf="imageTemp"
+        [src]="imageTemp"
+        class="rounded mx-auto d-block img-thumbnail"
+        alt="..."
+      />
+      <img
+        *ngIf="!imageTemp"
+        [src]="datosProducto.prod_image | imagen: 'productos'"
+        class="rounded mx-auto d-block img-thumbnail"
+        alt="..."
+      />
+    </div>
+
     <br />
-    <button mat-raised-button color="primary" (click)="ocultarForm()">
-      Regresar
-    </button>
-    <button type="submit" mat-raised-button color="warn" (click)="guardar()">
-      Guardar
-    </button>
   </div>
+  <!------------------------------------------------------>
+  <!-- FIN : Formulario creacion y actualizacion producto -->
+  <!-------------------------------------------------------->
 </div>

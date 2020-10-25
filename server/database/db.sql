@@ -69,6 +69,7 @@ CREATE TABLE tb_usuario
     ur_rol varchar(50),
     ur_dni VARCHAR(50),
     ur_email VARCHAR(50),
+    ur_imagen VARCHAR(200),
     ur_password VARCHAR(255)
 );
 

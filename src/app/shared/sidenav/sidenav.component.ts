@@ -37,8 +37,5 @@ export class SidenavComponent implements OnInit {
 
   constructor(public _loginService: LoginService) {}
 
-  ngOnInit() {
-    const user = localStorage.getItem('usuario');
-    this.usuario = JSON.parse(user);
-  }
+  ngOnInit() {}
 }

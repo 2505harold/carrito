@@ -14,11 +14,18 @@ export class MessagesService {
   }
 
   error(err: string) {
-    console.log(err);
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
       text: err,
+    });
+  }
+
+  info(msg: string) {
+    Swal.fire({
+      icon: 'info',
+      title: 'Oops...',
+      text: msg,
     });
   }
 }

@@ -1,8 +1,9 @@
 <div class="logo-profile">
   <h4>
-    {{ usuario.ur_nombre | titlecase }} {{ usuario.ur_apellido | titlecase }}
+    {{ this._loginService.usuario.ur_nombre | titlecase }}
+    {{ this._loginService.usuario.ur_apellido | titlecase }}
   </h4>
-  <p class="mb-0">{{ usuario.ur_rol | titlecase }}</p>
+  <p class="mb-0">{{ this._loginService.usuario.ur_rol | titlecase }}</p>
   <img src="assets/images/user_default.png" alt="" />
 </div>
 <mat-divider></mat-divider>

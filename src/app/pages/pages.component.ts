@@ -10,7 +10,4 @@ export class PagesComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
-  sidebarToggle() {
-    this.sideBarOpen = !this.sideBarOpen;
-  }
 }

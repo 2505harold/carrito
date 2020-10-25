@@ -18,6 +18,46 @@ app.get("/", async (req, res) => {
 });
 
 // ====================================
+// Actualizar
+// ====================================
+app.put("/", (req, res) => {
+  console.log(req.body);
+  const {
+    idmodelo,
+    idmarca,
+    idcategoria,
+    prod_codigo,
+    prod_nombre,
+    prod_precio,
+    prod_cantidad,
+    idproducto,
+  } = req.body;
+
+  const producto = {
+    idmodelo,
+    idmarca,
+    idcategoria,
+    prod_codigo,
+    prod_nombre,
+    prod_precio,
+    prod_cantidad,
+  };
+
+  pool.query(
+    "UPDATE tb_producto set ? WHERE idproducto = ?",
+    [producto, idproducto],
+    (err, results) => {
+      if (err) res.status(500).json({ ok: false, message: err });
+      else {
+        res
+          .status(200)
+          .json({ ok: true, message: "Datos actualizados correctamente" });
+      }
+    }
+  );
+});
+
+// ====================================
 // crear
 // ====================================
 app.post("/", async (req, res) => {
@@ -31,7 +71,7 @@ app.post("/", async (req, res) => {
     prod_cantidad,
   } = req.body;
 
-  const newProducto = {
+  const producto = {
     idmodelo,
     idmarca,
     idcategoria,
@@ -41,7 +81,7 @@ app.post("/", async (req, res) => {
     prod_cantidad,
   };
 
-  pool.query("INSERT INTO tb_producto set ?", [newProducto], (err, results) => {
+  pool.query("INSERT INTO tb_producto set ?", [producto], (err, results) => {
     if (err) res.status(500).json({ ok: false, message: err });
     else {
       res

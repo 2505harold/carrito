@@ -27,6 +27,7 @@ app.use("/categoria", require("./routes/categoria"));
 app.use("/pedido", require("./routes/pedido"));
 app.use("/usuario", require("./routes/usuario"));
 app.use("/login", require("./routes/login"));
+app.use("/imagen", require("./routes/imagenes"));
 
 // Public
 

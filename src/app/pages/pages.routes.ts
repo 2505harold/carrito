@@ -5,6 +5,7 @@ import { EmpleadosComponent } from './empleados/empleados.component';
 import { PagesComponent } from './pages.component';
 import { LoginGuard } from '../services/guards/login.guard';
 import { MantenimientoComponent } from './mantenimiento/mantenimiento.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const pagesRoutes: Routes = [
   {
@@ -16,6 +17,7 @@ const pagesRoutes: Routes = [
       { path: 'productos', component: ProductosComponent },
       { path: 'empleados', component: EmpleadosComponent },
       { path: 'mantenimiento', component: MantenimientoComponent },
+      { path: 'perfil', component: PerfilComponent },
     ],
   },
 ];

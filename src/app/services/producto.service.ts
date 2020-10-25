@@ -15,6 +15,11 @@ export class ProductoService {
     return this.http.post(url, producto);
   }
 
+  actualizar(producto: any) {
+    const url = `${URL_SERVICIOS}/producto`;
+    return this.http.put(url, producto);
+  }
+
   obtener() {
     const url = `${URL_SERVICIOS}/producto`;
     return this.http.get(url).pipe(
@@ -22,5 +27,10 @@ export class ProductoService {
         return resp.datos;
       })
     );
+  }
+
+  actualizarImagen(id: Int16Array, file: File) {
+    const url = `${URL_SERVICIOS}/productos/${id}`;
+    return this.http.put(url, file);
   }
 }
