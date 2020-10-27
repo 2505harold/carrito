@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
   usuario: any = [];
+  
 
   constructor(public http: HttpClient, public router: Router) {
     this.leerStorage();
