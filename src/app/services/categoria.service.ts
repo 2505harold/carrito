@@ -14,6 +14,11 @@ export class CategoriaService {
     return this.http.post(url, { categoria });
   }
 
+  eliminar(categoria: any) {
+    const url = `${URL_SERVICIOS}/categoria/${categoria.idcategoria}`;
+    return this.http.delete(url);
+  }
+
   obtener() {
     const url = `${URL_SERVICIOS}/categoria`;
     return this.http.get(url).pipe(

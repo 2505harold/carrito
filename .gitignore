@@ -2,7 +2,7 @@
 
 # compiled output
 #/dist
-/server/uploads/productos
+/server/uploads/productos/
 /tmp
 /out-tsc
 # Only exists if Bazel was run

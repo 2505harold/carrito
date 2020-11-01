@@ -23,6 +23,11 @@ export class ModeloService {
     );
   }
 
+  eliminar(modelo: any) {
+    const url = `${URL_SERVICIOS}/modelo/${modelo.idmodelo}`;
+    return this.http.delete(url);
+  }
+
   obtenerByIdCateg(idcategoria: Int16Array) {
     const url = `${URL_SERVICIOS}/modelo/porIdCateg/${idcategoria}`;
     return this.http.get(url).pipe(

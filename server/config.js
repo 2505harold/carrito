@@ -1,10 +1,8 @@
-//const modo = "DES";
 module.exports = {
   mySql: {
-    host: process.env.NODE_ENV === "PROD" ? "boos.com.pe" : "localhost",
-    user: process.env.NODE_ENV === "PROD" ? "boo2704d_user_dbcarrito" : "root",
-    password: "Hgeminis2014+",
-    database:
-      process.env.NODE_ENV === "PROD" ? "boo2704d_carrito" : "db_carrito",
+    host: process.env.CARRITO_HOST_DB,
+    user: process.env.CARRITO_USER_DB,
+    password: process.env.CARRITO_PWD_DB,
+    database: process.env.CARRITO_NAME_DB,
   },
 };

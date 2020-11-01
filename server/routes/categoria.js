@@ -55,8 +55,19 @@ app.put("/:id", async (req, res) => {
 // ====================================
 app.delete("/:id", async (req, res) => {
   const id = req.params.id;
-  await pool.query("DELETE FROM tb_categoria WHERE idcategoria = ?", [id]);
-  res.json({ ok: true, message: "Dato eliminado correctamente" });
+  pool.query(
+    "DELETE FROM tb_categoria WHERE idcategoria = ?",
+    [id],
+    (err, results) => {
+      if (err) {
+        res.status(500).json({ ok: false, message: err });
+      } else {
+        res
+          .status(200)
+          .json({ ok: true, message: "Dato eliminado satisfactoriamente" });
+      }
+    }
+  );
 });
 
 module.exports = app;

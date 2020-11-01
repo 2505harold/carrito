@@ -40,7 +40,6 @@ ESTILOS PARA EL CONTAINER ANGULAR (contiene el sidenav y content)
 =======================================================*/
 
 .mat-drawer-container {
-  height: 100vh;
   margin-top: 64px;
   display: flex;
   flex-direction: column;

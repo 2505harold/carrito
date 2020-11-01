@@ -58,10 +58,8 @@ app.post("/", async (req, res) => {
 // actualizar
 // ====================================
 app.put("/:id", async (req, res) => {
-  console.log(req.body);
   const { modelo, idcategoria } = req.body;
   const id = req.params.id;
-  console.log(id);
   const updateModelo = {
     idcategoria,
     md_modelo: modelo,
@@ -86,8 +84,19 @@ app.put("/:id", async (req, res) => {
 // ====================================
 app.delete("/:id", async (req, res) => {
   const id = req.params.id;
-  await pool.query("DELETE FROM tb_modelo WHERE idmodelo = ?", [id]);
-  res.json({ ok: true, message: "Dato eliminado correctamente" });
+  pool.query(
+    "DELETE FROM tb_modelo WHERE idmodelo = ?",
+    [id],
+    (err, results) => {
+      if (err) {
+        res.status(500).json({ ok: false, message: err });
+      } else {
+        res
+          .status(200)
+          .json({ ok: true, message: "Dato eliminado satisfactoriamente" });
+      }
+    }
+  );
 });
 
 module.exports = app;

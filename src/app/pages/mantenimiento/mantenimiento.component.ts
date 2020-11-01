@@ -23,22 +23,16 @@ export class MantenimientoComponent implements OnInit {
   dataMarca = new MatTableDataSource();
 
   //columnas de tablas
-  colsModelo: string[] = [
-    'index',
-    'idmodelo',
-    'md_modelo',
-    'ct_categoria',
-    'acciones',
-  ];
-  colsMarca: string[] = ['index', 'idmarca', 'mc_marca', 'acciones'];
-  colsCateg: string[] = ['index', 'idcategoria', 'ct_categoria', 'acciones'];
+  colsModelo: string[] = ['index', 'md_modelo', 'ct_categoria', 'acciones'];
+  colsMarca: string[] = ['index', 'mc_marca', 'acciones'];
+  colsCateg: string[] = ['index', 'ct_categoria', 'acciones'];
 
   constructor(
     public dialog: MatDialog,
     private _modeloService: ModeloService,
     private _categoriaService: CategoriaService,
     private _messageService: MessagesService,
-    private _marcaService: MarcaService
+    public _marcaService: MarcaService
   ) {}
 
   ngOnInit() {
@@ -91,7 +85,7 @@ export class MantenimientoComponent implements OnInit {
   fillTblModelo() {
     this._modeloService
       .obtener()
-      .subscribe((resp) => (this.dataModelos.data = resp));
+      .subscribe((resp) => (console.log(resp), (this.dataModelos.data = resp)));
   }
 
   fillTblCategoria() {
@@ -196,5 +190,44 @@ export class MantenimientoComponent implements OnInit {
           this._messageService.error(err.error.message.sqlMessage);
         }
       );
+  }
+
+  /************************************ */
+  // METODOS ELIMINAR
+  /************************************ */
+  eliminarMarca(data: any) {
+    this._messageService.confirm().then((resp) => {
+      this._marcaService.eliminar(data).subscribe(
+        (resp) => {
+          this.fillTblMarca(),
+            this._messageService.success('Dato eliminado satisfactoriamente');
+        },
+        (err) => this._messageService.error(err.error.message.sqlMessage)
+      );
+    });
+  }
+
+  eliminarCategoria(data: any) {
+    this._messageService.confirm().then((resp) => {
+      this._categoriaService.eliminar(data).subscribe(
+        (resp) => {
+          this.fillTblCategoria(),
+            this._messageService.success('Dato eliminado satisfactoriamente');
+        },
+        (err) => this._messageService.error(err.error.message.sqlMessage)
+      );
+    });
+  }
+
+  eliminarModelo(data: any) {
+    this._messageService.confirm().then((resp) => {
+      this._modeloService.eliminar(data).subscribe(
+        (resp) => {
+          this.fillTblModelo(),
+            this._messageService.success('Dato eliminado satisfactoriamente');
+        },
+        (err) => this._messageService.error(err.error.message.sqlMessage)
+      );
+    });
   }
 }

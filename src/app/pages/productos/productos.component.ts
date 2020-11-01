@@ -90,6 +90,7 @@ export class ProductosComponent implements OnInit {
         (resp: any) => {
           this.datosProducto = {};
           this.fillTableProducto();
+          this.ocultarForm();
           this._messageService.success(resp.message);
         },
         (err) => {
@@ -101,6 +102,7 @@ export class ProductosComponent implements OnInit {
         (resp: any) => {
           this.datosProducto = {};
           this.fillTableProducto();
+          this.ocultarForm();
           this._messageService.success(resp.message);
         },
         (err) => {
@@ -115,6 +117,7 @@ export class ProductosComponent implements OnInit {
       .subir(this.imagenSubir, 'productos', this.datosProducto.idproducto)
       .then((resp) => {
         this._messageService.success('Imagen actualizada satisfactoriamente');
+        this.ocultarForm();
         this.fillTableProducto();
       })
       .catch((err) => {

@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+require("./enviroment/variables.entorno");
 
 // Inicializacion
 app.set("port", process.env.PORT || 3008);

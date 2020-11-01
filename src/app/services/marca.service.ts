@@ -12,6 +12,11 @@ export class MarcaService {
     return this.http.post(url, { marca });
   }
 
+  eliminar(marca: any) {
+    const url = `${URL_SERVICIOS}/marca/${marca.idmarca}`;
+    return this.http.delete(url);
+  }
+
   actualizar(marca: string, idmarca: Int16Array) {
     const url = `${URL_SERVICIOS}/marca/${idmarca}`;
     return this.http.put(url, { marca });

@@ -21,7 +21,6 @@ app.get("/", async (req, res) => {
 // Actualizar
 // ====================================
 app.put("/", (req, res) => {
-  console.log(req.body);
   const {
     idmodelo,
     idmarca,
