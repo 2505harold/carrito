@@ -9,7 +9,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 
 const pagesRoutes: Routes = [
   {
-    path: '',
+    path: 'console',
     component: PagesComponent,
     canActivate: [LoginGuard],
     children: [

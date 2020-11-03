@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-sm-8">
+    <h3 class="font-weight-light">
+      <mat-icon class="text-danger">shopping_cart</mat-icon> Mis Compras a
+      realizar
+    </h3>
+    <div class="card-body overflow pt-0" [style.height.px]="300">
+      <table mat-table [dataSource]="dataCarrito" matSort>
+        <!-- Item Column -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ITEM</th>
+          <td mat-cell *matCellDef="let element; let i = index">
+            {{ i + 1 }}
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="prod_nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>NOMBRE</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.prod_nombre }}
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="car_cantidad">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>CANTIDAD</th>
+          <td mat-cell *matCellDef="let element">
+            <input
+              type="text"
+              (keydown)="onKeyUp($event, element)"
+              class="form-control"
+              [value]="element.car_cantidad"
+            />
+          </td>
+        </ng-container>
+
+        <!-- Column -->
+        <ng-container matColumnDef="car_total">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>TOTAL</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.car_total | currency: "S/. " }}
+          </td>
+        </ng-container>
+        <!-- Column -->
+        <ng-container matColumnDef="accion">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ACCION</th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              (click)="eliminar(element)"
+              mat-raised-button
+              color="warn"
+              class="ml-2"
+            >
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="noData">
+          <td mat-footer-cell *matFooterCellDef colspan="4" class="text-center">
+            No hay datos encontrados
+          </td>
+        </ng-container>
+        <tr
+          mat-footer-row
+          *matFooterRowDef="['noData']"
+          [ngClass]="{
+            hide: !(dataCarrito != null && dataCarrito.data.length == 0)
+          }"
+        ></tr>
+
+        <tr mat-header-row *matHeaderRowDef="columns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <h3 class="font-weight-light">
+      <mat-icon class="text-danger">payments</mat-icon> Monto a pagar
+    </h3>
+    <h2>{{ total | currency: "S/." }}</h2>
+  </div>
+</div>

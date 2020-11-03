@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-sm-4">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item text-danger">Categorias</li>
+    </ul>
+    <ul class="list-group list-group-flush">
+      <a
+        (click)="filtrar('t2.idcategoria', item.idcategoria)"
+        class="btn-list-group-item"
+        *ngFor="let item of categorias"
+      >
+        <li class="list-group-item">
+          {{ item.ct_categoria }}
+        </li>
+      </a>
+    </ul>
+    <br />
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item text-danger">Modelos</li>
+    </ul>
+    <ul class="list-group list-group-flush">
+      <a
+        (click)="filtrar('t4.idmodelo', item.idmodelo)"
+        class="btn-list-group-item"
+        *ngFor="let item of modelos"
+      >
+        <li class="list-group-item">
+          {{ item.md_modelo }}
+        </li>
+      </a>
+    </ul>
+
+    <br />
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item text-danger">Marcas</li>
+    </ul>
+    <ul class="list-group list-group-flush">
+      <a
+        (click)="filtrar('t3.idmarca', item.idmarca)"
+        class="btn-list-group-item"
+        *ngFor="let item of marcas"
+      >
+        <li class="list-group-item">
+          {{ item.mc_marca }}
+        </li>
+      </a>
+    </ul>
+  </div>
+  <div class="col-sm-8">
+    <div class="row">
+      <div class="col-sm-4 my-3" *ngFor="let item of productos">
+        <img
+          class="img-main"
+          [src]="item.prod_image | imagen: 'productos'"
+          alt="producto"
+        />
+
+        <h5 class="mt-3">{{ item.prod_nombre }}</h5>
+        <h2>{{ item.prod_precio | currency: "S/. ":true }}</h2>
+        <button mat-mini-fab color="warn">
+          <mat-icon>payment</mat-icon>
+        </button>
+        <button
+          (click)="carrito(item)"
+          mat-mini-fab
+          color="accent"
+          class="ml-2"
+        >
+          <mat-icon>add_shopping_cart</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

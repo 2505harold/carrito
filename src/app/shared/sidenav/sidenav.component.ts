@@ -12,25 +12,25 @@ export class SidenavComponent implements OnInit {
     {
       titulo: 'Productos',
       icono: 'shopping_basket',
-      url: '/productos',
+      url: 'productos',
       submenu: [],
     },
     {
       titulo: 'Empleados',
       icono: 'supervisor_account',
-      url: '/empleados',
+      url: 'empleados',
       submenu: [],
     },
     {
       titulo: 'Pedidos',
       icono: 'touch_app',
-      url: '/pedidos',
+      url: 'pedidos',
       submenu: [],
     },
     {
       titulo: 'Mantenimiento',
       icono: 'build',
-      url: '/mantenimiento',
+      url: 'mantenimiento',
       submenu: [],
     },
   ];

@@ -8,6 +8,8 @@ import { MarcaService } from './marca.service';
 import { MessagesService } from './messages.service';
 import { ProductoService } from './producto.service';
 import { SubirImagenService } from './subir-imagen.service';
+import { MainService } from './main.service'
+import {CarritoService} from './carrito.service'
 
 @NgModule({
   declarations: [],
@@ -20,6 +22,8 @@ import { SubirImagenService } from './subir-imagen.service';
     MarcaService,
     ProductoService,
     SubirImagenService,
+    MainService,
+    CarritoService
   ],
 })
 export class ServicesModule {}

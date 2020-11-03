@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 })
 export class LoginService {
   usuario: any = [];
-  
 
   constructor(public http: HttpClient, public router: Router) {
     this.leerStorage();
@@ -27,7 +26,7 @@ export class LoginService {
   logout() {
     localStorage.removeItem('usuario');
     this.usuario = [];
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
   }
 
   leerStorage() {

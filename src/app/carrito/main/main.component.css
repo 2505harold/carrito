@@ -1,0 +1,13 @@
+.btn-list-group-item {
+  text-decoration: none;
+  color: black;
+}
+
+.btn-list-group-item:focus > li {
+  background-color: #f8f9fa;
+}
+
+.img-main {
+  max-width: 150px;
+  max-height: 200px;
+}

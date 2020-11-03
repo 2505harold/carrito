@@ -1,0 +1,54 @@
+<header class="topbar">
+  <nav class="navbar top-navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container">
+      <div class="header-section-logo">
+        <a class="navbar-brand" href="#">Middleware</a>
+      </div>
+      <div class="header-section-buscar"></div>
+      <div class="header-section-opciones">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                routerLinkActive="active"
+                [routerLink]="['console']"
+                >Consola</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                routerLinkActive="active"
+                [routerLink]="['main']"
+                >Principal</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                routerLinkActive="active"
+                [routerLink]="['compras']"
+                >Carrito</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+</header>

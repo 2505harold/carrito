@@ -95,6 +95,17 @@ CREATE TABLE tb_producto
     CONSTRAINT fk_CategProducto FOREIGN KEY (idcategoria) REFERENCES tb_categoria(idcategoria),
 );
 
-ALTER TABLE tb_producto ADD PRIMARY KEY (idproducto);
+--CREANDO TABLA CARRITO
 
-ALTER TABLE tb_producto MODIFY idproducto INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
+CREATE TABLE tb_carrito
+(
+    idcarrito INT NOT NULL,
+    car_user VARCHAR(20),
+    idproducto INT NOT NULL,
+    car_cantidad INT,
+    car_total FLOAT
+);
+
+ALTER TABLE tb_carrito ADD PRIMARY KEY (idcarrito);
+
+ALTER TABLE tb_carrito MODIFY idcarrito INT NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;

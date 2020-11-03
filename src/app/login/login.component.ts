@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   ingresar(datos: any) {
     this._loginService.login(datos.email, datos.password).subscribe(
       (resp) => {
-        this.router.navigate(['pedidos']);
+        this.router.navigate(['/console']);
       },
       (err) => {
         console.log(err);
